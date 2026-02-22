@@ -23,6 +23,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role_id',
+        'cedula',
+        'telefono',
     ];
 
     /**
@@ -50,9 +53,8 @@ class User extends Authenticatable
         ];
     }
 
-    /**
-     * Get the user's initials
-     */
+
+
     public function initials(): string
     {
         return Str::of($this->name)
@@ -61,4 +63,27 @@ class User extends Authenticatable
             ->map(fn ($word) => Str::substr($word, 0, 1))
             ->implode('');
     }
+    public function role()
+{
+    return $this->belongsTo(Role::class);
+}
+
+//  Secciones donde es profesor
+public function seccionesComoProfesor()
+{
+    return $this->hasMany(Seccione::class, 'profesor_id');
+}
+
+//  Inscripciones como estudiante
+public function inscripciones()
+{
+    return $this->hasMany(Inscripcione::class, 'estudiante_id');
+}
+
+//  Asistencias como estudiante
+public function asistencias()
+{
+    return $this->hasMany(Asistencia::class, 'estudiante_id');
+}
+
 }

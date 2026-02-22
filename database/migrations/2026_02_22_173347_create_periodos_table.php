@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('periodos', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->date('fecha_inicio');
+            $table->date('fecha_fin');
+            $table->boolean('activo')->default(false);
             $table->timestamps();
         });
     }
