@@ -62,6 +62,13 @@ nav .container {
     gap: 10px;
 }
 
+.logo-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 6px;
+    object-fit: contain;
+}
+
 .nav-links {
     display: flex;
     gap: 30px;
@@ -262,6 +269,385 @@ footer {
 
 footer p {
     opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+    .quote-text {
+        font-size: 1.6rem;
+    }
+}
+
+/* Editorial Stories Section (Harvard Style) */
+.stories-section {
+    padding: 100px 0;
+    background-color: var(--white);
+}
+
+.stories-header {
+    margin-bottom: 60px;
+    text-align: left;
+    max-width: 900px;
+}
+
+.stories-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    color: var(--yale-blue-dark);
+    margin-bottom: 20px;
+    line-height: 1.1;
+}
+
+.stories-header p {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    font-weight: 300;
+}
+
+.stories-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-flow: dense;
+    gap: 40px;
+}
+
+.story-card {
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* Featured (Large) Card */
+.story-card-large {
+    grid-column: 1 / -1; /* Spans all 3 columns */
+    min-height: 550px;
+    display: flex;
+    align-items: flex-end;
+    border-radius: 4px; /* Optional, Harvard style is very square, let's keep sublte radius */
+    padding: 40px;
+}
+
+.story-card-large .story-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    transition: transform 0.8s ease;
+}
+
+.story-card-large:hover .story-img {
+    transform: scale(1.03);
+}
+
+.story-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 5, 20, 0.9) 0%, rgba(0, 5, 20, 0) 100%);
+    z-index: 1;
+}
+
+.story-content-large {
+    position: relative;
+    z-index: 2;
+    max-width: 700px;
+}
+
+.story-category {
+    display: inline-block;
+    color: #e5e5e5;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.story-content-large .story-title-large {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    color: var(--white);
+    margin-bottom: 30px;
+    line-height: 1.15;
+}
+
+.story-btn {
+    display: inline-block;
+    background: var(--white);
+    color: var(--yale-blue-dark);
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    padding: 15px 30px;
+    text-decoration: none;
+    transition: background 0.3s, color 0.3s;
+}
+
+.story-card-large:hover .story-btn {
+    background: var(--yale-blue-dark);
+    color: var(--white);
+}
+
+/* Small Cards */
+.story-card-small {
+    display: flex;
+    flex-direction: column;
+}
+
+.story-img-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    overflow: hidden;
+    margin-bottom: 24px;
+}
+
+.story-card-small .story-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+}
+
+.story-card-small:hover .story-img {
+    transform: scale(1.05); /* Zoom sutil requerido */
+}
+
+.story-content-small {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.story-card-small .story-category {
+    color: var(--yale-blue-dark);
+    margin-bottom: 8px;
+}
+
+.story-title-small {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: #111;
+    margin-bottom: 15px;
+    line-height: 1.25;
+    transition: color 0.3s;
+}
+
+.story-card-small:hover .story-title-small {
+    color: var(--yale-blue);
+}
+
+.story-excerpt {
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.story-link {
+    margin-top: auto;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    color: var(--text-primary);
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    display: inline-block;
+    padding-bottom: 2px;
+    width: fit-content;
+    transition: border-color 0.3s, color 0.3s;
+}
+
+.story-card-small:hover .story-link {
+    color: var(--yale-blue-dark);
+    border-bottom-color: var(--yale-blue-dark);
+}
+
+/* Responsive adjust for Grid */
+@media (max-width: 992px) {
+    .stories-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .stories-grid {
+        grid-template-columns: 1fr;
+    }
+    .story-card-large {
+        padding: 30px 20px;
+        min-height: 400px;
+    }
+    .story-content-large .story-title-large {
+        font-size: 2.2rem;
+    }
+    .stories-header h2 {
+        font-size: 2.5rem;
+    }
+}
+
+/* News Section */
+.news-section {
+    padding: 100px 0;
+    background-color: var(--yale-light-gray);
+    border-top: 1px solid #eaeaea;
+}
+
+.news-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 40px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #ccc;
+}
+
+.news-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: var(--yale-blue-dark);
+}
+
+.news-header p {
+    color: var(--text-secondary);
+    margin-top: 8px;
+}
+
+.news-header-link {
+    color: var(--yale-blue);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.news-header-link:hover {
+    text-decoration: underline;
+}
+
+.news-container {
+    position: relative;
+    min-height: 400px;
+}
+
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    transition: all 0.3s;
+}
+
+.news-grid.loading {
+    opacity: 0.5;
+    filter: blur(2px);
+}
+
+.news-loading-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    background: rgba(255, 255, 255, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(2px);
+    display: none;
+}
+
+.news-spinner {
+    height: 40px;
+    width: 40px;
+    color: var(--yale-blue);
+    animation: spin 1s linear infinite;
+}
+
+.news-spinner .opacity-25 { opacity: 0.25; }
+.news-spinner .opacity-75 { opacity: 0.75; }
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* when wire:loading implies display:flex */
+.news-loading-overlay[style*="display: flex"] {
+    display: flex !important;
+}
+
+.news-card {
+    cursor: pointer;
+}
+
+.news-card-image-wrapper {
+    overflow: hidden;
+    border-radius: 6px;
+    margin-bottom: 16px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    position: relative;
+    aspect-ratio: 4 / 3;
+}
+
+.news-card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s;
+}
+
+.news-card:hover .news-card-image {
+    transform: scale(1.05);
+}
+
+.news-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.news-category {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--yale-blue);
+    letter-spacing: 1px;
+}
+
+.news-date {
+    font-size: 0.75rem;
+    color: #888;
+}
+
+.news-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 1.4rem;
+    color: #111;
+    line-height: 1.3;
+    margin-bottom: 12px;
+    transition: color 0.3s;
+}
+
+.news-card:hover .news-title {
+    color: var(--yale-blue);
+}
+
+.news-excerpt {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.news-pagination {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
 }
 
 @media (max-width: 768px) {

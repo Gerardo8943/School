@@ -11,21 +11,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
     
     <!-- Styles -->
-    <link rel="stylesheet" href="{{ asset('css/landing.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/landing.css') }}?v={{ time() }}">
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @livewireStyles
 </head>
 <body>
     <nav>
         <div class="container">
             <a href="/" class="logo">
-                <svg width="32" height="32" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect width="40" height="40" rx="4" fill="#00356B"/>
-                    <path d="M12 10V30H16V22H24V30H28V10H24V18H16V10H12Z" fill="white"/>
-                </svg>
+                <img src="{{ asset('images/lion_logo.png') }}" alt="Leon Logo" class="logo-img">
                 <span>Universidad Leon</span>
             </a>
             <ul class="nav-links">
-                <li><a href="#about">Quiénes Somos</a></li>
-                <li><a href="#careers">Carreras</a></li>
+                <li><a href="#about">Facultades</a></li>
+                <li><a href="#about">Admisiones</a></li>
+                <li><a href="#about">Instalaciones</a></li>
+                <li><a href="#about">Nuestros atletas</a></li>
+                <li><a href="#about">Contacto</a></li>
                 @if (Route::has('login'))
                     @auth
                         <li><a href="{{ url('/dashboard') }}" class="btn-login">Dashboard</a></li>
@@ -40,7 +42,7 @@
     <div class="hero-scroll-container">
         <div class="video-wrapper" id="videoWrapper">
             <video autoplay loop muted playsinline class="hero-video" id="heroVideo">
-                <source src="{{ asset('build/assets/videos/hero-video.mp4') }}" type="video/mp4">
+                <source src="{{ asset('videos/hero-video.mp4') }}" type="video/mp4">
             </video>
             <div class="hero-overlay" id="heroOverlay"></div>
             <div class="hero-content">
@@ -58,27 +60,69 @@
         </div>
     </section>
 
-    <section id="about">
+    <!-- SECCIÓN ESTILO EDITORIAL (Harvard Student Stories Inspired) -->
+    <section class="stories-section" id="impact">
         <div class="container">
-            <div class="section-title">
-                <h2>Quiénes Somos</h2>
+            <div class="stories-header">
+                <h2>Creando juntos soluciones para el mundo.</h2>
+                <p>El futuro no es lo que imaginas, es lo que puedes crear el día de hoy para el mañana.</p>
             </div>
-            <div class="grid">
-                <div class="card">
-                    <h3>Nuestra Misión</h3>
-                    <p>Brindar una educación integral de vanguardia, fomentando el pensamiento crítico y la investigación para transformar nuestra sociedad.</p>
-                </div>
-                <div class="card">
-                    <h3>Visión 2030</h3>
-                    <p>Ser reconocidos como la institución líder en innovación educativa y desarrollo tecnológico en la región.</p>
-                </div>
-                <div class="card">
-                    <h3>Valores</h3>
-                    <p>Integridad, Responsabilidad, Excelencia y Compromiso con la comunidad son los pilares que sustentan nuestra institución.</p>
-                </div>
+
+            <div class="stories-grid">
+                <!-- Tarjeta Principal (Featured) -->
+                <article class="story-card story-card-large">
+                    <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=1200&q=80" alt="Featured Story" class="story-img" loading="lazy">
+                    <div class="story-overlay"></div>
+                    <div class="story-content-large">
+                        <span class="story-category">Student Life</span>
+                        <h3 class="story-title-large">First Semester at Universidad Leon: 3 Things I Learned</h3>
+                        <a href="#" class="story-btn">Read Full Story</a>
+                    </div>
+                </article>
+
+                <!-- Fila de 3 Tarjetas Secundarias -->
+                <article class="story-card story-card-small">
+                    <div class="story-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=600&q=80" alt="Innovación" class="story-img" loading="lazy">
+                    </div>
+                    <div class="story-content-small">
+                        <span class="story-category">Investigación</span>
+                        <h3 class="story-title-small">Los nuevos laboratorios de Inteligencia Artificial</h3>
+                        <p class="story-excerpt">Descubre cómo los estudiantes están utilizando tecnología de punta para resolver problemas globales.</p>
+                        <a href="#" class="story-link">Leer más</a>
+                    </div>
+                </article>
+
+                <article class="story-card story-card-small">
+                    <div class="story-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=600&q=80" alt="Excelencia Global" class="story-img" loading="lazy">
+                    </div>
+                    <div class="story-content-small">
+                        <span class="story-category">Comunidad</span>
+                        <h3 class="story-title-small">Programas de inmersión y conexión internacional</h3>
+                        <p class="story-excerpt">Expandiendo las fronteras de nuestros alumnos para liderar en cualquier país del mundo.</p>
+                        <a href="#" class="story-link">Leer más</a>
+                    </div>
+                </article>
+
+                <article class="story-card story-card-small">
+                    <div class="story-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&q=80" alt="Impacto" class="story-img" loading="lazy">
+                    </div>
+                    <div class="story-content-small">
+                        <span class="story-category">Bienestar</span>
+                        <h3 class="story-title-small">El compromiso con el proyecto de servicio directo</h3>
+                        <p class="story-excerpt">Proyectos sociales profundamente arraigados en el desarrollo y la inclusión comunitaria.</p>
+                        <a href="#" class="story-link">Leer más</a>
+                    </div>
+                </article>
             </div>
         </div>
     </section>
+
+    <!-- TAREA 2: Sección de Noticias (Livewire News Feed) -->
+    @livewire('university-news')
+
 
     <section id="careers" style="background-color: var(--yale-light-gray);">
         <div class="container">
@@ -142,5 +186,6 @@
             });
         });
     </script>
+    @livewireScripts
 </body>
 </html>
