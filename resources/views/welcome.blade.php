@@ -74,8 +74,8 @@
                     <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=1200&q=80" alt="Featured Story" class="story-img" loading="lazy">
                     <div class="story-overlay"></div>
                     <div class="story-content-large">
-                        <span class="story-category">Student Life</span>
-                        <h3 class="story-title-large">First Semester at Universidad Leon: 3 Things I Learned</h3>
+                        <span class="story-category">Vida en el campus</span>
+                        <h3 class="story-title-large">Primer semestre en la universiada Leon</h3>
                         <a href="#" class="story-btn">Read Full Story</a>
                     </div>
                 </article>
