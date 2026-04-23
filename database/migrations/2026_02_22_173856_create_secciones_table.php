@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('secciones', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('materia_id')->constrained('materias')->cascadeOnDelete();
+            $table->foreignId('periodo_id')->constrained('periodos')->cascadeOnDelete();
+            $table->foreignId('profesor_id')->constrained('users')->cascadeOnDelete();
+            $table->integer('cupo_maximo')->default(30);
+            $table->string('horario')->nullable(); // Ej: "Lunes 18:00 - 20:00"
             $table->timestamps();
         });
     }

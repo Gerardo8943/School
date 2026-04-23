@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('inscripciones', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('student_id')->constrained('students')->cascadeOnDelete();
+            $table->foreignId('seccion_id')->constrained('secciones')->cascadeOnDelete();
+            $table->enum('status', ['pendiente', 'aprobado', 'rechazado'])->default('pendiente');
             $table->timestamps();
         });
     }

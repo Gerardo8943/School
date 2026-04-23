@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('tareas', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('seccion_id')->constrained('secciones')->cascadeOnDelete();
+            $table->string('titulo');
+            $table->text('descripcion')->nullable();
+            $table->datetime('fecha_entrega')->nullable();
+            $table->integer('peso_porcentaje')->nullable(); // Ej: 20 para 20%
             $table->timestamps();
         });
     }

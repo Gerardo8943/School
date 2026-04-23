@@ -27,7 +27,6 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'role_id',
         'cedula',
         'telefono',
     ];
@@ -76,16 +75,10 @@ public function seccionesComoProfesor()
     return $this->hasMany(Seccione::class, 'profesor_id');
 }
 
-//  Inscripciones como estudiante
-public function inscripciones()
+//  Perfil de estudiante
+public function student()
 {
-    return $this->hasMany(Inscripcione::class, 'estudiante_id');
-}
-
-//  Asistencias como estudiante
-public function asistencias()
-{
-    return $this->hasMany(Asistencia::class, 'estudiante_id');
+    return $this->hasOne(student::class);
 }
 
 }
