@@ -15,35 +15,37 @@ Route::get('/', function () {
 // -----------------------------------------------------------------
 // Rutas del Sistema Escolar (Requiere estar autenticado)
 // -----------------------------------------------------------------
-Route::middleware(['auth', 'verified'])->prefix('sistema')->group(function () {
 
-    // Ruta genérica 'dashboard' (sirve como puente para redirigir según el rol y para que las pruebas no fallen)
+Route::middleware(['auth', 'verified'])->group(function () {
+
+    // Ruta genérica 'dashboard' (puente principal esperado por Fortify y Pruebas)
+    // Su ruta completa es '/dashboard'.
     Route::get('/dashboard', function () {
-        // Aquí en el futuro redirigiremos según el rol, por ahora enviamos al admin
-        // Ejemplo: if(auth()->user()->role->name == 'Estudiante') return redirect()->route('student.dashboard');
+        // Redirección provisoria al panel admin
         return redirect()->route('admin.dashboard'); 
     })->name('dashboard');
-    
-    // === ESTUDIANTES ===
-    // Envolveremos esto en un middleware de 'role:estudiante' luego
-    Route::prefix('student')->name('student.')->group(function () {
-        Route::get('/dashboard', [StudentController::class, 'dashboard'])->name('dashboard');
-        Route::post('/enroll', [StudentController::class, 'enroll'])->name('enroll');
-    });
 
-    // === PROFESORES ===
-    // Envolveremos esto en un middleware de 'role:profesor' luego
-    Route::prefix('teacher')->name('teacher.')->group(function () {
-        Route::get('/dashboard', [TeacherController::class, 'dashboard'])->name('dashboard');
-        Route::post('/assign-grade', [TeacherController::class, 'assignGrade'])->name('grade');
-    });
+    // Rutas protegidas bajo el prefijo '/sistema'
+    Route::prefix('sistema')->group(function () {
+        
+        // === ESTUDIANTES ===
+        Route::prefix('student')->name('student.')->group(function () {
+            Route::get('/dashboard', [StudentController::class, 'dashboard'])->name('dashboard');
+            Route::post('/enroll', [StudentController::class, 'enroll'])->name('enroll');
+        });
 
-    // === CONTROL DE ESTUDIOS (ADMIN) ===
-    // Envolveremos esto en un middleware de 'role:control_estudio' luego
-    Route::prefix('admin')->name('admin.')->group(function () {
-        Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
-    });
+        // === PROFESORES ===
+        Route::prefix('teacher')->name('teacher.')->group(function () {
+            Route::get('/dashboard', [TeacherController::class, 'dashboard'])->name('dashboard');
+            Route::post('/assign-grade', [TeacherController::class, 'assignGrade'])->name('grade');
+        });
 
+        // === CONTROL DE ESTUDIOS (ADMIN) ===
+        Route::prefix('admin')->name('admin.')->group(function () {
+            Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
+        });
+
+    });
 });
 
 require __DIR__.'/settings.php';
