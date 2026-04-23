@@ -16,6 +16,13 @@ Route::get('/', function () {
 // Rutas del Sistema Escolar (Requiere estar autenticado)
 // -----------------------------------------------------------------
 Route::middleware(['auth', 'verified'])->prefix('sistema')->group(function () {
+
+    // Ruta genérica 'dashboard' (sirve como puente para redirigir según el rol y para que las pruebas no fallen)
+    Route::get('/dashboard', function () {
+        // Aquí en el futuro redirigiremos según el rol, por ahora enviamos al admin
+        // Ejemplo: if(auth()->user()->role->name == 'Estudiante') return redirect()->route('student.dashboard');
+        return redirect()->route('admin.dashboard'); 
+    })->name('dashboard');
     
     // === ESTUDIANTES ===
     // Envolveremos esto en un middleware de 'role:estudiante' luego
