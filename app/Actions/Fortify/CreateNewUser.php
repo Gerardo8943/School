@@ -24,7 +24,9 @@ class CreateNewUser implements CreatesNewUsers
             'password' => $this->passwordRules(),
         ])->validate();
 
-        return User::create([
+        // Usamos forceCreate para inyectar role_id de forma segura en nuestro backend
+        // ya que lo sacamos de $fillable por seguridad.
+        return User::forceCreate([
             'name' => $input['name'],
             'email' => $input['email'],
             'password' => bcrypt($input['password']),
