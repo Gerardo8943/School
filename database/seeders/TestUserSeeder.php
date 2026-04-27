@@ -18,18 +18,20 @@ class TestUserSeeder extends Seeder
     $adminRole = Role::where('name', 'admin')->first();
     $studentRole = Role::where('name', 'estudiante')->first();
 
-    User::create([
+    User::forceCreate([
         'name' => 'Gerardo Test',
         'email' => 'admin@test.com',
         'password' => Hash::make('password'),
         'role_id' => $adminRole->id,
+        'cedula' => '12345678',
     ]);
 
-    User::create([
+    User::forceCreate([
         'name' => 'Anibal Test',
         'email' => 'estudiante@test.com',
         'password' => Hash::make('password'),
         'role_id' => $studentRole->id,
+        'cedula' => '87654321',
     ]);
     }
 }

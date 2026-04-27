@@ -1,44 +1,6 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Universidad Sistema Escolar</title>
-    
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
-    
-    <!-- Styles -->
-    <link rel="stylesheet" href="{{ asset('css/landing.css') }}?v={{ time() }}">
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-    @livewireStyles
-</head>
-<body>
-    <nav>
-        <div class="container">
-            <a href="/" class="logo">
-                <img src="{{ asset('images/lion_logo.png') }}" alt="Leon Logo" class="logo-img">
-                <span>Universidad Leon</span>
-            </a>
-            <ul class="nav-links">
-                <li><a href="#about">Facultades</a></li>
-                <li><a href="#about">Admisiones</a></li>
-                <li><a href="#about">Instalaciones</a></li>
-                <li><a href="#about">Nuestros atletas</a></li>
-                <li><a href="#about">Contacto</a></li>
-                @if (Route::has('login'))
-                    @auth
-                        <li><a href="{{ url('/dashboard') }}" class="btn-login">Dashboard</a></li>
-                    @else
-                        <li><a href="{{ route('login') }}" class="btn-login">Login</a></li>
-                    @endauth
-                @endif
-            </ul>
-        </div>
-    </nav>
+@extends('layouts.landing')
 
+@section('content')
     <div class="hero-scroll-container">
         <div class="video-wrapper" id="videoWrapper">
             <video autoplay loop muted playsinline class="hero-video" id="heroVideo">
@@ -123,41 +85,33 @@
     <!-- TAREA 2: Sección de Noticias (Livewire News Feed) -->
     @livewire('university-news')
 
-
-    <section id="careers" style="background-color: var(--yale-light-gray);">
-        <div class="container">
-            <div class="section-title">
-                <h2>Carreras Ofrecidas</h2>
+    <section id="careers" class="bg-gray-100 py-16">
+        <div class="container mx-auto px-4">
+            <div class="section-title text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800">Carreras Ofrecidas</h2>
             </div>
-            <div class="grid">
-                <div class="card">
-                    <span style="color: var(--yale-blue); font-weight: 800; font-size: 0.8rem; text-transform: uppercase;">Facultad de Ingeniería</span>
-                    <h3 style="margin-top: 10px;">Ciencia de Datos</h3>
-                    <p>Analiza y transforma datos en decisiones estratégicas utilizando las últimas tecnologías de inteligencia artificial.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="card bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                    <span class="text-blue-800 font-bold text-xs uppercase tracking-wider">Facultad de Ingeniería</span>
+                    <h3 class="mt-3 text-xl font-semibold text-gray-900">Ciencia de Datos</h3>
+                    <p class="mt-2 text-gray-600">Analiza y transforma datos en decisiones estratégicas utilizando las últimas tecnologías de inteligencia artificial.</p>
                 </div>
-                <div class="card">
-                    <span style="color: var(--yale-blue); font-weight: 800; font-size: 0.8rem; text-transform: uppercase;">Facultad de Ingeniería</span>
-                    <h3 style="margin-top: 10px;">Ingeniería Informática</h3>
-                    <p>Desarrolla sistemas complejos y arquitectura de software para resolver los retos del mañana.</p>
+                <div class="card bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                    <span class="text-blue-800 font-bold text-xs uppercase tracking-wider">Facultad de Ingeniería</span>
+                    <h3 class="mt-3 text-xl font-semibold text-gray-900">Ingeniería Informática</h3>
+                    <p class="mt-2 text-gray-600">Desarrolla sistemas complejos y arquitectura de software para resolver los retos del mañana.</p>
                 </div>
-                <div class="card">
-                    <span style="color: var(--yale-blue); font-weight: 800; font-size: 0.8rem; text-transform: uppercase;">Facultad de Medicina</span>
-                    <h3 style="margin-top: 10px;">Medicina Odontológica</h3>
-                    <p>Formación clínica de excelencia con equipamiento de última generación y enfoque humano.</p>
+                <div class="card bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                    <span class="text-blue-800 font-bold text-xs uppercase tracking-wider">Facultad de Medicina</span>
+                    <h3 class="mt-3 text-xl font-semibold text-gray-900">Medicina Odontológica</h3>
+                    <p class="mt-2 text-gray-600">Formación clínica de excelencia con equipamiento de última generación y enfoque humano.</p>
                 </div>
             </div>
         </div>
     </section>
+@endsection
 
-    <footer>
-        <div class="container">
-            <p>© 2026 Universidad Sistema Escolar. Inspirado en la excelencia.</p>
-            <div style="margin-top: 20px; opacity: 0.6; font-size: 0.8rem;">
-            Realizando la mejor labor para el futuro de la educación.
-            </div>
-        </div>
-    </footer>
-
+@push('scripts')
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const video = document.getElementById('heroVideo');
@@ -165,17 +119,13 @@
             
             window.addEventListener('scroll', () => {
                 let scrollY = window.scrollY;
-                // Max scroll corresponds to the extra 50vh we added to container
                 let maxScroll = window.innerHeight * 0.5; 
                 let progress = Math.min(scrollY / maxScroll, 1);
                 
-                // Calculate scale (from 1 down to 0.85)
                 let scale = 1 - (progress * 0.15);
-                // Calculate overlay opacity and blur
-                let blur = progress * 8; // blur up to 8px
+                let blur = progress * 8; 
                 let opacityDarken = 0.5 + (progress * 0.2);
 
-                // Apply transforms if video exists
                 if (video) {
                     video.style.transform = `translate(-50%, -50%) scale(${scale})`;
                     video.style.filter = `blur(${blur}px)`;
@@ -186,6 +136,4 @@
             });
         });
     </script>
-    @livewireScripts
-</body>
-</html>
+@endpush

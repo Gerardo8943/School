@@ -9,7 +9,7 @@ use App\Http\Controllers\Sistema\AdminController;
 // Rutas Landing Page (Para visitantes y plebeyos)
 // -----------------------------------------------------------------
 Route::get('/', function () {
-    return view('welcome'); // En el futuro será 'landing.home'
+    return view('landing.welcome');
 })->name('home');
 
 // -----------------------------------------------------------------
@@ -20,10 +20,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // Ruta genérica 'dashboard' (puente principal esperado por Fortify y Pruebas)
     // Su ruta completa es '/dashboard'.
-    Route::get('/dashboard', function () {
-        // Redirección provisoria al panel admin
-        return redirect()->route('admin.dashboard'); 
-    })->name('dashboard');
+    Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
 
     // Rutas protegidas bajo el prefijo '/sistema'
     Route::prefix('sistema')->group(function () {
