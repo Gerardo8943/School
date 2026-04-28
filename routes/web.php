@@ -26,19 +26,19 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::prefix('sistema')->group(function () {
         
         // === ESTUDIANTES ===
-        Route::prefix('student')->name('student.')->group(function () {
+        Route::middleware('role:estudiante')->prefix('student')->name('student.')->group(function () {
             Route::get('/dashboard', [StudentController::class, 'dashboard'])->name('dashboard');
             Route::post('/enroll', [StudentController::class, 'enroll'])->name('enroll');
         });
 
         // === PROFESORES ===
-        Route::prefix('teacher')->name('teacher.')->group(function () {
+        Route::middleware('role:profesor')->prefix('teacher')->name('teacher.')->group(function () {
             Route::get('/dashboard', [TeacherController::class, 'dashboard'])->name('dashboard');
             Route::post('/assign-grade', [TeacherController::class, 'assignGrade'])->name('grade');
         });
 
         // === CONTROL DE ESTUDIOS (ADMIN) ===
-        Route::prefix('admin')->name('admin.')->group(function () {
+        Route::middleware('role:admin,control_estudio')->prefix('admin')->name('admin.')->group(function () {
             Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
         });
 

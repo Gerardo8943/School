@@ -69,16 +69,15 @@ class User extends Authenticatable
     return $this->belongsTo(Role::class);
 }
 
-//  Secciones donde es profesor
-public function seccionesComoProfesor()
-{
-    return $this->hasMany(Seccione::class, 'profesor_id');
-}
+    //  Secciones donde es profesor
+    public function seccionesComoProfesor()
+    {
+        return $this->hasMany(Seccione::class, 'profesor_id');
+    }
 
-//  Perfil de estudiante
-public function student()
-{
-    return $this->hasOne(student::class);
-}
-
+    //  Perfil de estudiante
+    public function student()
+    {
+        return $this->hasOne(Student::class);
+    }
 }

@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class student extends Model
+class Student extends Model
 {
     protected $fillable = ['user_id'];
 
@@ -12,7 +12,7 @@ class student extends Model
         return $this->belongsTo(User::class);
     }
     public function carreras() {
-        return $this->belongsToMany(carrera::class, 'career_student');
+        return $this->belongsToMany(Carrera::class, 'career_student');
     }
     public function inscripciones() {
         return $this->hasMany(Inscripcione::class, 'student_id');
