@@ -6,7 +6,7 @@ use Carbon\Carbon;
 new class extends Component
 {
     public array $activities = [
-        ['title' => 'Examen de Matemáticas', 'date' => '2026-05-02', 'type' => 'Examen', 'color' => 'red'],
+        ['title' => 'Examen de Matemáticas', 'date' => '2026-05-02', 'type' => 'Examen', 'color' => 'purple'],
         ['title' => 'Entrega Proyecto Web', 'date' => '2026-05-05', 'type' => 'Proyecto', 'color' => 'indigo'],
         ['title' => 'Exposición Historia', 'date' => '2026-05-10', 'type' => 'Exposición', 'color' => 'green'],
     ];
