@@ -9,7 +9,7 @@ class Inscripcione extends Model
     protected $fillable = ['student_id', 'seccion_id', 'status'];
 
     public function student() {
-        return $this->belongsTo(student::class, 'student_id');
+        return $this->belongsTo(Student::class, 'student_id');
     }
     public function seccion() {
         return $this->belongsTo(Seccione::class, 'seccion_id');

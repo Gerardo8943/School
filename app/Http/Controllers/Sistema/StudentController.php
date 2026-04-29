@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Services\EnrollmentService;
 use Illuminate\Http\Request;
 
+use App\Models\Seccione;
+use App\Exceptions\EnrollmentException;
+
 class StudentController extends Controller
 {
     public function dashboard()
@@ -16,14 +19,23 @@ class StudentController extends Controller
 
     public function enroll(Request $request, EnrollmentService $enrollmentService)
     {
-        // Como tu Mano, me encargo de que el controlador envíe la orden al servicio
-        // y no se ensucie las manos con reglas de horario o cruces.
+        $request->validate([
+            'seccion_id' => 'required|exists:secciones,id'
+        ]);
+
+        $student = auth()->user()->student;
         
-        // $student = auth()->user()->student;
-        // $seccion = Seccione::find($request->seccion_id);
-        
-        // $enrollmentService->enrollStudent($student, $seccion);
-        
-        return redirect()->route('student.dashboard')->with('success', 'Solicitud de inscripción procesada.');
+        if (!$student) {
+            return redirect()->back()->with('error', 'No tienes un perfil de estudiante asignado.');
+        }
+
+        $seccion = Seccione::findOrFail($request->seccion_id);
+
+        try {
+            $enrollmentService->enrollStudent($student, $seccion);
+            return redirect()->route('student.dashboard')->with('success', 'Inscripción procesada correctamente.');
+        } catch (EnrollmentException $e) {
+            return redirect()->back()->with('error', $e->getMessage());
+        }
     }
 }
