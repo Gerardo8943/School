@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use App\Models\Seccione;
 use App\Exceptions\EnrollmentException;
 
+use Illuminate\Support\Facades\Auth;
+
 class StudentController extends Controller
 {
     public function dashboard()
@@ -23,7 +25,7 @@ class StudentController extends Controller
             'seccion_id' => 'required|exists:secciones,id'
         ]);
 
-        $student = auth()->user()->student;
+        $student = Auth::user()->student;
         
         if (!$student) {
             return redirect()->back()->with('error', 'No tienes un perfil de estudiante asignado.');
