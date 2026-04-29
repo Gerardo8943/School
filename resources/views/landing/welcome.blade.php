@@ -15,7 +15,7 @@
 
     <section class="premium-quote-section">
         <div class="quote-wrapper">
-            <p class="quote-text">"La universidad de Leon es la academia de aprendizaje ideal para tu formacion profesional, grandes mentes se reunen para impulsar su futuro, de la sociedad y del mundo. No te quedes atras"</p>
+            <p class="quote-text">"La universidad de Leon,  academia de aprendizaje ideal para tu formacion profesional, grandes mentes se reunen para impulsar su futuro, de la sociedad y del mundo."</p>
             <div class="quote-signature-wrapper">
                 <p class="quote-signature">Universidad Leon</p>
             </div>
@@ -26,8 +26,8 @@
     <section class="stories-section" id="impact">
         <div class="container">
             <div class="stories-header">
-                <h2>Creando juntos soluciones para el mundo.</h2>
-                <p>El futuro no es lo que imaginas, es lo que puedes crear el día de hoy para el mañana.</p>
+                <h2>Formando profesionales con valores y compromiso.</h2>
+                <p>El futuro no es solo lo que imaginas, es lo que puedes crear el día de hoy para el mañana.</p>
             </div>
 
             <div class="stories-grid">
@@ -37,8 +37,8 @@
                     <div class="story-overlay"></div>
                     <div class="story-content-large">
                         <span class="story-category">Vida en el campus</span>
-                        <h3 class="story-title-large">Primer semestre en la universiada Leon</h3>
-                        <a href="#" class="story-btn">Read Full Story</a>
+                        <h3 class="story-title-large">Primer semestre en la Universidad Leon</h3>
+                        <a href="#" class="story-btn">Leer más</a>
                     </div>
                 </article>
 
@@ -92,9 +92,9 @@
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div class="card bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                    <span class="text-blue-800 font-bold text-xs uppercase tracking-wider">Facultad de Ingeniería</span>
-                    <h3 class="mt-3 text-xl font-semibold text-gray-900">Ciencia de Datos</h3>
-                    <p class="mt-2 text-gray-600">Analiza y transforma datos en decisiones estratégicas utilizando las últimas tecnologías de inteligencia artificial.</p>
+                    <span class="text-blue-800 font-bold text-xs uppercase tracking-wider">Facultad de Medicina</span>
+                    <h3 class="mt-3 text-xl font-semibold text-gray-900">Medicina General</h3>
+                    <p class="mt-2 text-gray-600">Formando profesionales de la salud con excelencia académica, compromiso social y valores éticos.</p>
                 </div>
                 <div class="card bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
                     <span class="text-blue-800 font-bold text-xs uppercase tracking-wider">Facultad de Ingeniería</span>
@@ -102,9 +102,9 @@
                     <p class="mt-2 text-gray-600">Desarrolla sistemas complejos y arquitectura de software para resolver los retos del mañana.</p>
                 </div>
                 <div class="card bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                    <span class="text-blue-800 font-bold text-xs uppercase tracking-wider">Facultad de Medicina</span>
-                    <h3 class="mt-3 text-xl font-semibold text-gray-900">Medicina Odontológica</h3>
-                    <p class="mt-2 text-gray-600">Formación clínica de excelencia con equipamiento de última generación y enfoque humano.</p>
+                    <span class="text-blue-800 font-bold text-xs uppercase tracking-wider">Facultad de Comercio Internacional</span>
+                    <h3 class="mt-3 text-xl font-semibold text-gray-900">Comercio Internacional</h3>
+                    <p class="mt-2 text-gray-600">Desarrolla habilidades de negociación, logística y estrategia global para conectar mercados y crear oportunidades de negocio en el mundo.</p>
                 </div>
             </div>
         </div>
