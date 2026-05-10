@@ -28,7 +28,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         // === ESTUDIANTES ===
         Route::middleware('role:estudiante')->prefix('student')->name('student.')->group(function () {
             Route::get('/dashboard', [StudentController::class, 'dashboard'])->name('dashboard');
-            Route::post('/enroll', [StudentController::class, 'enroll'])->name('enroll');
+            Route::get('/enroll', \App\Livewire\Student\EnrollmentForm::class)->name('enroll');
         });
 
         // === PROFESORES ===

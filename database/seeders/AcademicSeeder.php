@@ -96,5 +96,15 @@ class AcademicSeeder extends Seeder
                 );
             }
         }
+
+        // 5. Asignar Carrera de Odontología al estudiante de prueba (Anibal Test)
+        $estudianteUser = User::where('email', 'estudiante@test.com')->first();
+        if ($estudianteUser) {
+            $studentProfile = \App\Models\Student::firstOrCreate(['user_id' => $estudianteUser->id]);
+            $odontologia = Carrera::where('name', 'Odontología')->first();
+            if ($odontologia) {
+                $studentProfile->carreras()->syncWithoutDetaching([$odontologia->id]);
+            }
+        }
     }
 }
