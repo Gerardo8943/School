@@ -1,5 +1,14 @@
 <x-layouts.app>
     <div class="flex flex-col gap-8">
+        @if (session()->has('success'))
+            <div class="p-4 rounded-lg bg-green-50 text-green-800 dark:bg-green-900/50 dark:text-green-300 flex items-center gap-3">
+                <svg class="size-5 shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <p class="text-sm font-medium">{{ session('success') }}</p>
+            </div>
+        @endif
+        
         <!-- Header Section -->
         <div class="flex items-center justify-between">
             <div>

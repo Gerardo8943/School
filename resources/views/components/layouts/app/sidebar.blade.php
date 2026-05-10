@@ -93,5 +93,8 @@
         {{ $slot }}
 
         @fluxScripts
+        @if (session('swal'))
+            <div x-data x-init="window.Livewire.dispatch('swal:{{ session('swal.type') }}', [@json(session('swal'))])"></div>
+        @endif
     </body>
 </html>

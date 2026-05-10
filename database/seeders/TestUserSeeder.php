@@ -15,23 +15,33 @@ class TestUserSeeder extends Seeder
      */
     public function run(): void
     {
-    $adminRole = Role::where('name', 'admin')->first();
-    $studentRole = Role::where('name', 'estudiante')->first();
+        $adminRole = Role::where('name', 'admin')->first();
+        $studentRole = Role::where('name', 'estudiante')->first();
 
-    User::forceCreate([
-        'name' => 'Gerardo Test',
-        'email' => 'admin@test.com',
-        'password' => Hash::make('password'),
-        'role_id' => $adminRole->id,
-        'cedula' => '12345678',
-    ]);
+        // Usamos DB::table para evitar restricciones de mass-assignment ($guarded/$fillable)
+        // ya que role_id está protegido por seguridad en el modelo User.
+        \Illuminate\Support\Facades\DB::table('users')->updateOrInsert(
+            ['email' => 'admin@test.com'],
+            [
+                'name' => 'Gerardo Test',
+                'password' => Hash::make('password'),
+                'role_id' => $adminRole->id,
+                'cedula' => '12345678',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]
+        );
 
-    User::forceCreate([
-        'name' => 'Anibal Test',
-        'email' => 'estudiante@test.com',
-        'password' => Hash::make('password'),
-        'role_id' => $studentRole->id,
-        'cedula' => '87654321',
-    ]);
+        \Illuminate\Support\Facades\DB::table('users')->updateOrInsert(
+            ['email' => 'estudiante@test.com'],
+            [
+                'name' => 'Anibal Test',
+                'password' => Hash::make('password'),
+                'role_id' => $studentRole->id,
+                'cedula' => '87654321',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]
+        );
     }
 }
