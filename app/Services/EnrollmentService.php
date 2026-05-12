@@ -18,6 +18,17 @@ class EnrollmentService
     public function enrollStudent(Student $student, Seccione $seccion)
     {
         return DB::transaction(function () use ($student, $seccion) {
+            // 0. Seguridad: Validar que la materia pertenezca a la carrera del estudiante
+            $esMateriaValida = $student->carreras()
+                ->whereHas('materias', function($query) use ($seccion) {
+                    $query->where('materias.id', $seccion->materia_id);
+                })
+                ->exists();
+
+            if (!$esMateriaValida) {
+                throw new EnrollmentException("La materia {$seccion->materia->name} no pertenece a tu carrera asignada.");
+            }
+
             // 1. Validar que el estudiante no esté ya inscrito en esta sección
             if ($student->inscripciones()->where('seccion_id', $seccion->id)->exists()) {
                 throw new EnrollmentException('Ya te encuentras inscrito en esta sección.');

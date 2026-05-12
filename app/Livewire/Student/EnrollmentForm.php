@@ -32,22 +32,22 @@ class EnrollmentForm extends Component
     public string $periodoNombre = '';
 
     // Campos Editables (Contacto)
-    #[Validate('required|email|max:255')]
     public string $email = '';
-
-    #[Validate('nullable|string|max:20')]
     public string $telefono = '';
-
-    // Preferencias
-    #[Validate('required|in:Matutino,Vespertino,Nocturno')]
     public string $turno = 'Matutino';
-
-    #[Validate('accepted')]
     public bool $aceptoTerminos = false;
-
-    // Selección de Materias/Secciones
-    #[Validate('required|array|min:1')]
     public array $seccionesSeleccionadas = [];
+
+    public function rules(): array
+    {
+        return [
+            'email' => ['required', 'email', 'max:255', 'unique:users,email,' . Auth::id()],
+            'telefono' => ['nullable', 'string', 'max:20'],
+            'turno' => ['required', 'in:Matutino,Vespertino,Nocturno'],
+            'aceptoTerminos' => ['accepted'],
+            'seccionesSeleccionadas' => ['required', 'array', 'min:1'],
+        ];
+    }
 
     public function mount(): void
     {
