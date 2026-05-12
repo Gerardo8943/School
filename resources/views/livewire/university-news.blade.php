@@ -2,8 +2,8 @@
     <div class="container">
         <div class="news-header">
             <div>
-                <h2>Noticias Universidad Leon</h2>
-                <p>Novedades y descubrimientos</p>
+                <h2>Noticias del campus</h2>
+                <p>Lo más relevante de nuestra institución</p>
             </div>
             <a href="#" class="news-header-link">Todas las noticias &rarr;</a>
         </div>
